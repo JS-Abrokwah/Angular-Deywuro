@@ -1,0 +1,1 @@
+Refer to https://github.com/JS-Abrokwah/Angular-Deywuro for detailed documentation of this application.
