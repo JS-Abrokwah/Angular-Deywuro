@@ -1,0 +1,46 @@
+
+<form [formGroup]="loginForm">
+    <div class="form-input-div rounded-pill my-2">
+      <span class=""><mat-icon aria-hidden="false">person</mat-icon></span>
+      <input 
+        type="text"
+        class="text-light mt-2 mx-2"
+        placeholder="Username or Email"
+        formControlName="userNameOrEmail"
+      />
+    </div>
+    <div *ngIf="getUserNameOrEmail?.invalid && getUserNameOrEmail?.touched" class="bg-danger rounded-pill mb-3" style="text-align: center;">
+      <small class="text-light" *ngIf="getUserNameOrEmail?.errors?.['required']">Username or Email is required</small>
+
+      <small class="text-light" *ngIf="getUserNameOrEmail?.errors?.['minlength']">Username or Email must be at least 6 characters long</small>
+    </div>
+
+    <div class="form-input-div rounded-pill mb-3">
+      <span><mat-icon aria-hidden="false">lock</mat-icon></span>
+      <input
+        class="text-light mt-2 mx-2"
+        type="{{ hide ? 'password' : 'text' }}"
+        placeholder="Password"
+        formControlName="password"
+      />
+      <span class="eye-icon"
+        ><mat-icon aria-hidden="false" (click)="hide = !hide">{{
+          hide ? "visibility" : "visibility_off"
+        }}</mat-icon></span
+      >
+    </div>
+    <div *ngIf="getPassword?.invalid && getPassword?.touched" class="bg-danger rounded-pill mb-3" style="text-align: center;">
+      <small class="text-light" *ngIf="getPassword?.errors?.['required']">Password is required</small>
+
+      <small class="text-light" *ngIf="getPassword?.errors?.['minlength']">Password must be at least 8 characters long</small>
+    </div>
+  </form>
+  <div *ngIf="getUserNameOrEmail?.valid && getPassword?.valid" class="d-grid mb-3">
+    <button (click)="openHomepage()" mat-flat-button class="rounded-pill" color="primary">
+      GET STARTED
+    </button>
+  </div>
+  <ul class="row" style="padding: 0 !important">
+    <li class="col" routerLink="/register"><a>CREATE ACCOUNT</a></li>
+    <li class="col" routerLink="reset-password"><a>FORGOT PASSWORD?</a></li>
+  </ul>

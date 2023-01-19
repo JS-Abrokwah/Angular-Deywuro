@@ -1,0 +1,5 @@
+::ng-deep .mat-datepicker-toggle {
+    font-size: 0.8em !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }

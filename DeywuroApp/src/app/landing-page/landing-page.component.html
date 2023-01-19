@@ -1,0 +1,55 @@
+<div class="landing-page">
+  <div class="Deywuro-dark-theme py-3">
+    <mat-toolbar class="nav" color="primary">
+      <span class="ms-3" style="cursor: pointer">
+        <img
+          (click)="imgclicked()"
+          style="width: 6em"
+          src="../../assets/images/landingPage/dey_logo_new.png"
+          alt=""
+        />
+      </span>
+      <span class="mx-3">
+        <a
+          [class.text-warning]="hovered1"
+          (mouseover)="hovered1 = true"
+          (mouseout)="hovered1 = false"
+          mat-button
+          style="font-size: 0.8em"
+          href="#"
+          >API Documentation</a
+        >
+      </span>
+      <span>
+        <a
+          [class.text-warning]="hovered2"
+          (mouseover)="hovered2 = true"
+          (mouseout)="hovered2 = false"
+          mat-button
+          style="font-size: 0.8em"
+          href="mailto:support@npontu.com"
+          >Contact Support</a
+        >
+      </span>
+    </mat-toolbar>
+  </div>
+
+  <div class="call-action">
+    <p class="text-warning my-3 h6">Your Leading Communication Gateway</p>
+    <marquee direction="up" behavior="slide" scrollamount="20" height="100%">
+      <span class="text-warning" style="font-size: 8em; font-weight: 100"
+      >&mdash;</span
+    >
+    <div class="ms-5 mt-2">
+      <p class=" text-light pb-3" style="font-size: 5em; font-weight: 600;">Deywuro</p>
+      <button
+        class="btn btn-lg btn-outline-warning border border-warning border-2 rounded-pill mt-5 "
+        style="background: transparent"
+        routerLink="login"
+      >
+        <span class="text-light px-3">Login/Register</span>
+      </button>
+    </div>
+    </marquee>
+  </div>
+</div>

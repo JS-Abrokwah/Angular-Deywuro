@@ -1,0 +1,65 @@
+// src/styles.scss
+
+@use "@angular/material" as mat;
+
+@include mat.core();
+
+$dark-palette:(
+  50:#FAFAFA,
+100:#F5F5F5,
+200:#EEEEEE,
+300:#E0E0E0,
+400:#BDBDBD,
+500:#9E9E9E,
+600:#757575,
+700:#616161,
+800:#424242,
+900:#212121,
+A100:#000000,
+contrast:(
+  50:rgba(black, 0.87),
+  100:rgba(black, 0.87),
+  200:rgba(black, 0.87),
+  300:rgba(black, 0.87),
+  400:rgba(black, 0.87),
+  500:rgba(black, 0.87),
+  600:rgba(black, 0.87),
+  700:rgba(black, 0.87),
+  800:rgba(black, 0.87),
+  900:rgba(black, 0.87),
+  A100:rgba(black, 0.90)
+)
+);
+
+$Deywuro-default-primary: mat.define-palette(mat.$red-palette,900);
+$Deywuro-default-accent: mat.define-palette(mat.$blue-palette,500,A200,300);
+$Deywuro-default-warn: mat.define-palette(mat.$amber-palette,500);
+
+$Deywuro-default-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $Deywuro-default-primary,
+      accent: $Deywuro-default-accent,
+      warn: $Deywuro-default-warn,
+    ),
+  )
+);
+
+$Deywuro-dark-primary:mat.define-palette($dark-palette,A100);
+$Deywuro-dark-accent:mat.define-palette(mat.$blue-grey-palette,700,500,300);
+$Deywuro-dark-warn:mat.define-palette(mat.$grey-palette,600,400,300);
+
+$Deywuro-dark-theme:mat.define-dark-theme((
+  color:(
+    primary:$Deywuro-dark-primary,
+    accent:$Deywuro-dark-accent,
+    warn:$Deywuro-dark-warn
+  )
+));
+
+@include mat.all-component-themes($Deywuro-default-theme);
+
+.Deywuro-dark-theme{
+  @include mat.all-component-themes($Deywuro-dark-theme);
+}
+

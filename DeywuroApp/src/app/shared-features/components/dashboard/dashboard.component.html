@@ -1,0 +1,209 @@
+<div class="dashboard">
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand logo" routerLink="/deywuro/welcome"
+        ><img
+          src="../../../../assets/images/landingPage/dey_logo_new.png"
+          alt=""
+      /></a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#dashboardNavbar"
+        aria-controls="dashboardNavbar"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <mat-icon class="text-warning">menu</mat-icon>
+      </button>
+      <div class="collapse navbar-collapse ms-3" id="dashboardNavbar">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item text-start">
+            <a mat-button [matMenuTriggerFor]="sms"
+              ><mat-icon>mail</mat-icon>SMS<mat-icon
+                >arrow_drop_down</mat-icon
+              ></a
+            >
+            <mat-menu #sms="matMenu">
+              <a routerLink="/sms/dashboard" mat-menu-item>SMS Dashboard</a>
+              <a routerLink="/sms/single-sms" mat-menu-item>Single SMS</a>
+              <a mat-menu-item [matMenuTriggerFor]="bulkMSG">Bulk Messaging</a>
+              <a mat-menu-item [matMenuTriggerFor]="personBulk"
+                >Personalised Bulk</a
+              >
+              <a mat-menu-item [matMenuTriggerFor]="campaigns">Campaigns</a>
+            </mat-menu>
+
+            <mat-menu #bulkMSG="matMenu">
+              <a routerLink="/sms/bulk-sms" mat-menu-item>Bulk SMS</a>
+              <a routerLink="/sms/group-sms" mat-menu-item>Group SMS</a>
+            </mat-menu>
+            <mat-menu #personBulk="matMenu">
+              <a mat-menu-item>Bulk SMS</a>
+              <a mat-menu-item>Group SMS</a>
+            </mat-menu>
+            <mat-menu #campaigns="matMenu">
+              <a mat-menu-item>SMS</a>
+              <a mat-menu-item>API</a>
+            </mat-menu>
+          </li>
+
+          <li class="nav-item text-start">
+            <a mat-button [matMenuTriggerFor]="email"
+              ><mat-icon>mail</mat-icon>Email<mat-icon
+                >arrow_drop_down</mat-icon
+              ></a
+            >
+            <mat-menu #email="matMenu">
+              <a mat-menu-item>Mail Audience</a>
+              <a mat-menu-item>Email Campaigns</a>
+              <a mat-menu-item [matMenuTriggerFor]="settings">Settings</a>
+              <a mat-menu-item>Subscription</a>
+              <a mat-menu-item>Personalised Emails</a>
+              <a mat-menu-item>Personalised Emails Report</a>
+            </mat-menu>
+
+            <mat-menu #settings="matMenu">
+              <a mat-menu-item>Templates</a>
+              <a mat-menu-item>Campaign Address</a>
+            </mat-menu>
+          </li>
+
+          <li class="nav-item text-start">
+            <a mat-button [matMenuTriggerFor]="socialMedia"
+              ><mat-icon>laptop_mac</mat-icon>Social Media<mat-icon
+                >arrow_drop_down</mat-icon
+              ></a
+            >
+            <mat-menu #socialMedia="matMenu">
+              <a mat-menu-item>Account SetUp</a>
+              <a mat-menu-item>Create Post</a>
+              <a mat-menu-item
+                >Trending
+                <span class="text-light bg-danger rounded-pill px-1"
+                  >Hot</span
+                ></a
+              >
+              <a mat-menu-item [matMenuTriggerFor]="myPges">My Pages</a>
+              <a mat-menu-item>Subscription</a>
+            </mat-menu>
+
+            <mat-menu #myPges="matMenu">
+              <a mat-menu-item>Facebook</a>
+              <a mat-menu-item>Twitter</a>
+              <a mat-menu-item>LinkedIn</a>
+            </mat-menu>
+          </li>
+
+          <li class="nav-item text-start">
+            <a mat-button [matMenuTriggerFor]="purchase"
+              ><mat-icon>payments</mat-icon>Purchase<mat-icon
+                >arrow_drop_down</mat-icon
+              ></a
+            >
+            <mat-menu #purchase="matMenu">
+              <a mat-menu-item>Purchase Credit</a>
+            </mat-menu>
+          </li>
+
+          <li class="nav-item text-start">
+            <a mat-button [matMenuTriggerFor]="reports"
+              ><mat-icon>monitoring</mat-icon>Reports<mat-icon
+                >arrow_drop_down</mat-icon
+              ></a
+            >
+            <mat-menu #reports="matMenu">
+              <a mat-menu-item [matMenuTriggerFor]="log24h">Log 24h</a>
+              <a mat-menu-item [matMenuTriggerFor]="whiteMsg"
+                >Log 24h (wht-msg)</a
+              >
+              <a mat-menu-item [matMenuTriggerFor]="specifyPeriod"
+                >Specify Period</a
+              >
+              <a mat-menu-item>Reporting</a>
+              <a mat-menu-item [matMenuTriggerFor]="emailReports"
+                >Email Reports</a
+              >
+              <a mat-menu-item>SMS Comparison</a>
+              <a mat-menu-item>2 Way SMS response</a>
+              <a mat-menu-item>Credit History</a>
+              <a mat-menu-item>Email Payments</a>
+              <a mat-menu-item>Invoice Report</a>
+            </mat-menu>
+
+            <mat-menu #log24h>
+              <a mat-menu-item>SMS</a>
+            </mat-menu>
+            <mat-menu #whiteMsg="matMenu">
+              <a mat-menu-item>SMS</a>
+            </mat-menu>
+            <mat-menu #specifyPeriod="matMenu">
+              <a mat-menu-item>SMS</a>
+            </mat-menu>
+            <mat-menu #emailReports="matMenu">
+              <a mat-menu-item>Campaign Reports</a>
+              <a mat-menu-item>API Reports</a>
+            </mat-menu>
+          </li>
+
+          <li class="nav-item text-start">
+            <a><mat-icon>phone_iphone</mat-icon>USSD Service</a>
+          </li>
+
+          <li class="nav-item text-start">
+            <a mat-button [matMenuTriggerFor]="sentiAnalysis"
+              ><mat-icon>payments</mat-icon>Sentiments<mat-icon
+                >arrow_drop_down</mat-icon
+              ></a
+            >
+            <mat-menu #sentiAnalysis="matMenu">
+              <a mat-menu-item>Dashboard</a>
+              <a mat-menu-item>Settings</a>
+            </mat-menu>
+          </li>
+
+          <li class="nav-item text-start">
+            <a mat-button [matMenuTriggerFor]="resources"><img src="../../../../assets/images/landingPage/deywuro_too.png" alt="" style="width: 5em; margin-top: -1.2em;"> Resources</a>
+            <mat-menu #resources="matMenu">
+              <a mat-menu-item>
+                <mat-icon class="iconMargin">person</mat-icon>Profile
+              </a>
+              <a mat-menu-item>
+                <mat-icon class="iconMargin">groups</mat-icon>Contacts
+              </a>
+              <a mat-menu-item>
+                <mat-icon class="iconMargin">rss_feed</mat-icon>Feedback & Support
+              </a>
+              <a mat-menu-item>
+                <mat-icon class="iconMargin">rss_feed</mat-icon>Manage Users
+              </a>
+              <mat-divider></mat-divider>
+              <a (click)="logUserOut()" mat-menu-item>
+                <mat-icon class="iconMargin">lock</mat-icon>Logout
+              </a>
+            </mat-menu>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container-fluid bg-light my-1 border border-danger rounded text-center text-danger banner" style="height: 8vh;line-height: 3em; font-size: 1.2em; font-weight: 300;">
+    KINDLY UPDATE YOUR CONTACT PERSON ID. <a class="btn btn-info btn-sm text-light" style="font-size: 0.7em;">Click Here To Update</a>
+  </div>
+
+  <div class="container-fluid my-2">
+    <ng-content></ng-content>
+  </div>
+
+  <div class="my-3 py-3"></div>
+
+  <footer>
+    <div class="copyright py-2">
+      &copy; {{ copyrightyear }} <a href="http://npontu.com">Npontu Technologies</a>
+    </div>
+    <div class="ownership py-2">
+      Powered by <a href="http://npontu.com">Npontu Technologies</a>
+    </div>
+  </footer>
+</div>

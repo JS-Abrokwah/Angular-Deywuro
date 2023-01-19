@@ -1,0 +1,25 @@
+.loginPage{
+    background-image: url(../../assets/images/loginPage/loginback03.jpg);
+    overflow: auto;
+    background-size: cover;
+    background-position: top;
+    width: 100% !important;
+    height: 100% !important;
+    padding: 0!important;
+    margin: 0 !important;
+    font-family: 'Mukta', sans-serif;
+}
+
+.logo img{
+    width: 8em;
+    cursor: pointer;
+}
+
+.formdiv{
+    position: relative;
+    top: 25vh;
+}
+
+.form-group{
+    padding: 25px !important;
+}

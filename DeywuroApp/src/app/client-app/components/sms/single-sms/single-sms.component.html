@@ -1,0 +1,282 @@
+<div class="singleSMS">
+  <tab-renderer
+    [hasTabs]="hastabs"
+    [Heading]="heading"
+    [Tabs]="tabs"
+    [selectTab]="activeTab"
+    [focusOnLastTab]="isLastTab"
+    (nextTab)="NextTab($event)"
+    (prevTab)="PreviousTab($event)"
+    [canSaveMessage]="false"
+    (submit)="submitForm($event)"
+  >
+    <!-- Ng content goes here -->
+    <!-- Tab content 1 -->
+    <div id="tabContent-1">
+      <div *ngIf="checkFormValidation" class="alert alert-danger my-3">
+        <ul>
+          <li *ngIf="getMobileNumber?.invalid">
+            The mobile number field is either empty or invalid
+          </li>
+          <li *ngIf="getSenderID?.invalid">A sender ID is required</li>
+          <li *ngIf="getMessageType?.invalid">
+            Message Type field is required
+          </li>
+          <li *ngIf="getMessageContent?.invalid">
+            Message Content field is required
+          </li>
+        </ul>
+      </div>
+      
+      <form [formGroup]="sendSMSform">
+        <div class="form-group py-3">
+          <label for="languageType" class="form-label">Language Type</label>
+          <select class="form-select" formControlName="languageType">
+            <option
+              *ngFor="let language of languages; let i = index"
+              value="{{ language }}"
+            >
+              {{ language }}
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="mobileNumber" class="form-label">Mobile Number</label>
+          <input
+            type="tel"
+            class="form-control rounded-pill"
+            formControlName="mobileNumber"
+            placeholder="024xxxxxxx"
+          />
+        </div>
+        <div class="row pb-3">
+          <div class="col-md-4"></div>
+          <div class="col-md-8">
+            <small
+              >Only one mobile number can be inputted at a time. For more than
+              one, kindly use the Bulk or Personalized SMS</small
+            >
+          </div>
+        </div>
+        <div class="form-group pb-3">
+          <label for="senderID" class="form-label"
+            >SenderID
+            <button
+              class="text-warning btn btn-sm btn-dark"
+              style="font-size: 0.75em; padding: 0.2em !important"
+            >
+              <i class="fa-solid fa-circle-plus"></i> Add New
+            </button></label
+          >
+          <select class="form-select rounded-pill" formControlName="senderID">
+            <option
+              *ngFor="let ID of senderId; let i = index"
+              value="{{ ID.sender }}"
+            >
+              {{ ID.sender }}
+            </option>
+          </select>
+        </div>
+        <div class="form-group pb-3">
+          <label for="scheduleDate" class="form-label">Schedule Date <small>(click the calender icon)</small></label>
+          <div class="input-group">
+            <input
+              class="form-control"
+              style="
+                border-top-left-radius: 3em;
+                border-bottom-left-radius: 3em;
+              "
+              readonly
+              formControlName="scheduleDate"
+              matInput
+              [ngxMatDatetimePicker]="datePicker"
+            />
+            <span class="input-group-text"
+              ><mat-datepicker-toggle
+                matSuffix
+                [for]="$any(datePicker)"
+              ></mat-datepicker-toggle
+            ></span>
+            <ngx-mat-datetime-picker
+              #datePicker
+              [showSpinners]="true"
+              [showSeconds]="true"
+              [enableMeridian]="true"
+            ></ngx-mat-datetime-picker>
+          </div>
+        </div>
+        <div class="form-group pb-3">
+          <label class="form-label">Message Type</label>
+          <div
+            class="form-control rounded-pill"
+            style="padding: 0 !important"
+            readonly
+          >
+            <div class="form-check form-check-inline ms-3 mt-1">
+              <input
+                type="radio"
+                class="form-check-input"
+                id="text"
+                value="Text"
+                formControlName="messageType"
+              />
+              <label for="text" class="form-check-label">Text</label>
+            </div>
+            <div class="form-check form-check-inline mt-1">
+              <input
+                type="radio"
+                class="form-check-input"
+                id="flash"
+                value="Flash"
+                formControlName="messageType"
+              />
+              <label for="flash" class="form-check-label">Flash</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group pb-3">
+          <label for="pictureForMessage" class="form-label"
+            >Add a picture to the message</label
+          >
+          <input
+            type="file"
+            accept="image/*"
+            class="form-control rounded-pill"
+            formControlName="pictureForMessage"
+          />
+        </div>
+        <div class="form-group pb-3">
+          <label
+            for="messageContent"
+            class="form-label"
+            style="margin-bottom: 0 !important"
+            >Message Content</label
+          >
+          <div class="row">
+            <div class="col-md-8"></div>
+            <div class="col-md-4">
+              <p style="color: brown; font-weight: 600">
+                {{ getMessageContent?.value?.length }} character(s),
+                {{ msgPages }} page<span *ngIf="msgPages > 1">s</span>
+              </p>
+            </div>
+          </div>
+          <textarea
+            class="form-control"
+            cols="60"
+            maxlength="1528"
+            rows="5"
+            formControlName="messageContent"
+            (keyup)="msgContentKeyUp()"
+          ></textarea>
+        </div>
+      </form>
+    </div>
+
+    <!-- Tab content 2 -->
+    <div id="tabContent-2">
+      <div class="wizard-content mt-3 mb-5">
+        <div class="wizard-pane active" id="confirmation" role="tabpanel">
+          <form method="post" id="confirmation_form">
+            <div style="font-size: 15px; text-align: center">
+              You're about to send an SMS message with sender Id
+              <b
+                style="
+                  font-weight: bold;
+                  color: #212121;
+                  text-transform: uppercase;
+                "
+                >{{getSenderID?.value}}</b
+              ><br /><br />
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <span>
+                  <img
+                    style="width: 40%"
+                    src="../../../../../assets/images/smsPage/three.png"
+                  />
+                </span>
+                <br />
+                <br />
+                <div style="font-weight: bold; color: green">Schedule date</div>
+                <b>{{getScheduleDate?.value}}</b>
+              </div>
+
+              <div class="col-md-3">
+                <span>
+                  <img
+                    style="width: 40%"
+                    src="../../../../../assets/images/smsPage/one.png"
+                  />
+                </span>
+                <br />
+                <br />
+                <div style="font-weight: bold; color: green">
+                  Total Recipients
+                </div>
+                <b>{{smsSpecs.Recipients}} Recipients</b>
+              </div>
+
+              <div class="col-md-3">
+                <span
+                  ><img
+                    style="width: 38%"
+                    src="../../../../../assets/images/smsPage/circle.png"
+                /></span>
+                <br />
+                <br />
+                <div style="font-weight: bold; color: green">Message Count</div>
+                <b> {{msgPages}} SMS</b>
+              </div>
+
+              <div class="col-md-3">
+                <span>
+                  <img
+                    style="width: 45%"
+                    src="../../../../../assets/images/smsPage/two.png"
+                  />
+                </span>
+                <br />
+                <br />
+                <div style="font-weight: bold; color: green">Total Price</div>
+                <b>{{smsSpecs.TotalPrice}} GHC</b>
+              </div>
+
+              <div class="col-md-3">
+                <span>
+                  <img
+                    style="width: 30%; margin-top: 1em"
+                    src="../../../../../assets/images/smsPage/usedprice.png"
+                  />
+                </span>
+                <br />
+                <br />
+                <div style="font-weight: bold; color: green">
+                  Credit Available
+                </div>
+                <b> {{smsSpecs.AvailableCredit}} GHC</b>
+              </div>
+            </div>
+            <br />
+
+            <div class="mobile__wrapper">
+              <div class="mobile__outline--top"></div>
+              <div class="mobile__outline--body">
+                <div class="mobile__screen">
+                  <div class="from-me loud">
+                    <p>{{getMessageContent?.value}}</p>
+                    <p id="senderid">Sent by: {{getSenderID?.value}}</p>
+                  </div>
+
+                  <div class="clear"></div>
+                </div>
+              </div>
+              <div class="mobile__outline--bottom"></div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </tab-renderer>
+</div>

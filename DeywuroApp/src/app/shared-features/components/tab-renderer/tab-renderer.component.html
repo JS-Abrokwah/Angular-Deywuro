@@ -1,0 +1,130 @@
+<div class="row">
+  <div class="widget widget-1 col-md-3 card rounded">
+    <p class="pt-5 text-dark" style="font-size: 1.5em">
+      {{ UserProfile.username }}
+    </p>
+    <p class="pt-2" style="font-size: 1.5em">{{ UserProfile.realName }}</p>
+    <p class="pt-2" style="font-size: 1.2em">{{ UserProfile.organization }}</p>
+    <div class="social pt-3 pb-5">
+      <a href="https://twitter.com/Npontu">
+        <i class="fa-brands fa-twitter"></i>
+      </a>
+      <a href="https://www.facebook.com/NpontuTechnologies">
+        <i class="fa-brands fa-facebook-f"></i>
+      </a>
+      <a href="https://www.linkedin.com/company/npontu-technology">
+        <i class="fa-brands fa-linkedin-in"></i>
+      </a>
+      <a href="https://www.instagram.com/npontutechnologies/">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+    </div>
+    <div
+      class="bg-dark text-center mt-4"
+      style="width: 100% !important; height: 5em"
+    >
+      <p class="text-warning pt-2" style="font-size: 1.2em; font-weight: 300">
+        Total Credit Available
+      </p>
+      <p class="text-light" style="font-size: 0.9em; font-weight: 300">
+        {{ UserProfile.totalCredit }}
+      </p>
+    </div>
+  </div>
+  <div class="widget widget-2 col-md-9 card rounded">
+    <h3 class="ms-3 mt-3" style="color: black">{{ heading }}</h3>
+    <div *ngIf="hasTabs" class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <ul class="navbar-nav tabs-labels">
+          <li
+            class="nav-item text-start"
+            *ngFor="let tab of Tabs"
+            [class.active-tab]="selectedTab === tab.tabID"
+          >
+            <p
+              class="tab-title px-5 pt-3"
+              [class.text-warning]="selectedTab === tab.tabID"
+            >
+              {{ tab?.title }}
+            </p>
+            <p
+              class="tab-subTitle px-5"
+              [class.text-light]="selectedTab === tab.tabID"
+            >
+              {{ tab?.subTitle }}
+            </p>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div *ngIf="hasTabs" class="container-fluid tab-content">
+      <div *ngIf="selectedTab === 0">
+        <ng-content select="#tabContent-1"></ng-content>
+      </div>
+      <div *ngIf="selectedTab === 1">
+        <ng-content select="#tabContent-2"></ng-content>
+      </div>
+      <div *ngIf="selectedTab === 2">
+        <ng-content select="#tabContent-3"></ng-content>
+      </div>
+      <div *ngIf="selectedTab === 3">
+        <ng-content select="#tabContent-5"></ng-content>
+      </div>
+      <div *ngIf="selectedTab === 4">
+        <ng-content select="#tabContent-5"></ng-content>
+      </div>
+    </div>
+    <div class="row" *ngIf="hasTabs">
+      <div class="col" *ngIf="!canSaveMessage && selectedTab == 0"></div>
+      <div class="col" *ngIf="selectedTab != 0">
+        <button
+          (click)="backwardTab()"
+          mat-flat-button
+          color="primary"
+          class="my-2"
+          style="width: 100% !important; font-weight: 400 !important"
+        >
+          &lt;&lt; BACK
+        </button>
+      </div>
+      <div class="col" *ngIf="canSaveMessage && selectedTab == 0">
+        <button
+          (click)="saveNewMessage()"
+          mat-flat-button
+          class="my-2"
+          style="
+            width: 100% !important;
+            color: #ffff !important;
+            font-weight: 400 !important;
+          "
+          [ngStyle]="{ backgroundColor: getBtnColor() }"
+        >
+          SAVE MESSAGE
+        </button>
+      </div>
+      <div class="col" *ngIf="!focusOnLastTab">
+        <button
+          (click)="forwardTab()"
+          mat-flat-button
+          color="primary"
+          class="my-2"
+          style="width: 100% !important; font-weight: 400 !important"
+        >
+          NEXT &gt;&gt;
+        </button>
+      </div>
+      <div class="col" *ngIf="focusOnLastTab">
+        <button
+          (click)="SubmitClicked()"
+          mat-flat-button
+          color="accent"
+          class="my-2"
+          style="width: 100% !important; font-weight: 400 !important"
+        >
+          SUBMIT
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

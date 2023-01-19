@@ -1,0 +1,44 @@
+
+.form-input-div{
+    background-color: rgba(0, 0, 0, 0.67);
+    height: 50px;
+    text-align: center;
+}
+
+.form-input-div input{
+    background: transparent;
+    margin-top: 3px;
+    border: none;
+    outline: none;
+    width: 70%;
+    height: 70%;
+    vertical-align: bottom;
+    cursor: text;
+}
+.not-valid{
+    border: 2px solid rgb(143, 2, 2);
+    background-color: rgba(143, 2, 2, 0.85);
+    
+}
+button{
+    height: 50px;
+}
+
+li{
+    list-style: none;
+    padding: 0 !important;
+    cursor: pointer;
+    letter-spacing: 0.1em;
+    width: fit-content !important;
+    margin-right: 10px;
+}
+/* li a{
+   padding-left: 2px; 
+} */
+.form-input-div mat-icon{
+    font-size: 1.3em;
+    vertical-align: bottom;
+}
+.eye-icon{
+    cursor: pointer;
+}

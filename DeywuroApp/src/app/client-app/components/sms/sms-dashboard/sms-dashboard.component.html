@@ -1,0 +1,17 @@
+<div class="row summary-cards text-center justify-content-center">
+    <div *ngFor="let summary of smsSummary; let i=index" class="card col-lg-3" [class.firstChild]="i===0" [style.background]="summary.bg" [ngStyle]="{
+        'background-size': 'cover',
+        'color':'#ffff'
+      }">
+      <div class="text-center py-3"><mat-icon>{{summary.icon}}</mat-icon></div>
+      <div>
+        <h1 class="py-3" style="font-size: 3.5em;">{{summary.totals}}</h1>
+      </div>
+      <div>{{summary.label}}</div>
+    </div>
+
+</div>
+<div class="row">
+  <!-- ******Todo***
+      Data visualization charts shold be in this div -->
+</div>

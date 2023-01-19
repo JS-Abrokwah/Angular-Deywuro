@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+div{
+  display: block;
+}
+
+.form-select,
+.form-control{
+  font-family: 'Raleway', sans-serif !important;
+    color: #76838f !important;
+    font-size: 0.9em !important;
+    font-weight: 500 !important;
+}
+

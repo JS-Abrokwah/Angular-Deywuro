@@ -1,0 +1,11 @@
+.bulkSMS {
+    font-family: "Raleway", sans-serif !important;
+    color: #76838f !important;
+  }
+  .form-label {
+    font-size: 1em !important;
+    font-weight: 500 !important;
+  }
+  .input-group-text{
+    padding: 0 !important;
+  }

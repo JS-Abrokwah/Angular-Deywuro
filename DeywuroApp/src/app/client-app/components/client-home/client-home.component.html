@@ -1,0 +1,30 @@
+<div class="client-homepage">
+  <shared-homepage>
+    <div class="container">
+      <div class="card-container d-md-inline-flex">
+        <div
+          *ngFor="let card of cardItems; let i = index"
+          class="card"
+          [ngClass]="{
+            overlaps: i !== 0,
+            lastchild: i == cardItems.length - 1
+          }"
+          routerLink="{{card.routeUrl}}"
+          (mouseover)="hover = true"
+          (mouseout)="hover = false"
+          [ngStyle]="{
+            'background-image': 'url(' + card.bgUrl + ')',
+            'background-size': 'cover',
+            border: '1px solid rgba(255, 255, 255, 0.64)'
+          }"
+        >
+          <div class="card-labels">
+            <h3 class="title">{{ card.title }}</h3>
+            <div [ngClass]="{ emptydiv: !hover, filleddiv: hover }"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="py-5"></div>
+  </shared-homepage>
+</div>
